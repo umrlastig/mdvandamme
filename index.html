@@ -34,7 +34,8 @@
 </head>
 
 
-<body id="page-top">
+<!-- onload="reviewingVis('reviewing.json');getJournalPublicationsAuthor('guillaume-touya');getConfPublicationsAuthor('guillaume-touya');getBookPublicationsAuthor('guillaume-touya');getOtherPublicationsAuthor('guillaume-touya');getWorkshopPublicationsAuthor('guillaume-touya');getInvitedTalksAuthor('guillaume-touya');" -->
+<body id="page-top" onload="reviewingVis('reviewing.json');" style='font-size:13pt'>
 
   <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top" id="sideNav">
     <select class="selectpicker" data-width="fit">
@@ -55,8 +56,28 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link js-scroll-trigger lang-en" href="#about" style="color:#000;">About</a>
+          <a class="nav-link js-scroll-trigger lang-en" href="#about" style="color:#000;">Home</a>
           <a class="nav-link js-scroll-trigger lang-fr" href="#about" style="color:#000;">Présentation</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link js-scroll-trigger lang-en" href="#interest" style="color:#000;">Research Works</a>
+          <a class="nav-link js-scroll-trigger lang-fr" href="#interest" style="color:#000;">Travaux de recherche</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link js-scroll-trigger lang-en" href="#projects" style="color:#000;">Projects</a>
+          <a class="nav-link js-scroll-trigger lang-fr" href="#projects" style="color:#000;">Projets</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link js-scroll-trigger lang-en" href="#tools" style="color:#000;">Software development</a>
+          <a class="nav-link js-scroll-trigger lang-fr" href="#tools" style="color:#000;">Développement d'outils</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link js-scroll-trigger lang-en" href="#publications" style="color:#000;">Publications</a>
+          <a class="nav-link js-scroll-trigger lang-fr" href="#publications" style="color:#000;">Publications</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link js-scroll-trigger lang-en" href="#teaching" style="color:#000;">Teaching</a>
+          <a class="nav-link js-scroll-trigger lang-fr" href="#teaching" style="color:#000;">Enseignement</a>
         </li>
       </ul>
     </div>
@@ -72,16 +93,17 @@
     <!-- ==============================================================================================================================   -->
     <section class="resume-section p-3 p-lg-5 d-flex align-items-center" id="about">
       <div class="w-100">
-        <h2 class="mb-0">Marie-Dominique Van Damme</span></h2>
+        <h2 class="mb-0">Marie-Dominique Van Damme</h2>
         <p class="lead mb-5 lang-en" style='padding:0px'>
-          <a>marie<!--anti@spam.fr!-->-dominique.vandamme@ign.fr</a>
+          <a>marie<!--anti@spam.fr!-->-dominique.van-damme@ensg.eu</a>
           <br/><br/>
-          <span style='padding-right:8px'>Teacher at the French National School of Geographic Sciences (ENSG), IGN’s School of Geomatics,</span>
+          <span style='padding-right:8px'>Lecturer at the French National School of Geographic Sciences (ENSG), IGN’s School of Geomatics,</span>
           <span style='padding-right:8px'><a href="https://www.ensg.eu"><img src='./img/logo_ensg_mini.png' height='45px' /></a></span>
           <a href="https://www.univ-gustave-eiffel.fr/"><img src='./img/Logo_Université_Gustave_Eiffel_2020.svg' height='30px' /></a>
           <br/>
-          <span>IT Engineer in <a href="https://www.umr-lastig.fr/meig/index.html">MEIG</a> research team </span>
-          <a href="https://www.umr-lastig.fr/meig/index.html"><img src='./img/logo_meig.png' height='45px'/></a>
+          <span>In charge of research and studies in <a href="https://www.umr-lastig.fr/meig/index.html">MEIG</a> research team </span>
+          <a href="https://www.umr-lastig.fr/meig/index.html"><img src='./img/logo_meig.png' height='45px'/></a>&nbsp;
+          &nbsp;<a href="https://www.umr-lastig.fr/"><img src='./img/logo_lastig.png' height='45px'/></a>
         </p>
         <p class="lead mb-5 lang-fr" style='padding:0px'>
           <a>marie<!--anti@spam.fr!-->-dominique.vandamme@ign.fr</a>
@@ -90,16 +112,285 @@
           <span style='padding-right:8px'><a href="https://www.ensg.eu"><img src='./img/logo_ensg_mini.png' height='45px' /></a></span>
           <a href="https://www.univ-gustave-eiffel.fr/"><img src='./img/Logo_Université_Gustave_Eiffel_2020.svg' height='30px' /></a>
           <br/>
-          <span>Ingénieure d’études dans l'équipe de recherche <a href="https://www.umr-lastig.fr/meig/index.html">MEIG</a></span>
-          <a href="https://www.umr-lastig.fr/meig/index.html"><img src='./img/logo_meig.png' height='45px'/></a>
+          <span>Chargée d'études et de recherche dans l'équipe de recherche <a href="https://www.umr-lastig.fr/meig/index.html">MEIG</a></span>
+          <a href="https://www.umr-lastig.fr/meig/index.html"><img src='./img/logo_meig.png' height='45px'/></a>&nbsp;
+          &nbsp;<a href="https://www.umr-lastig.fr/"><img src='./img/logo_lastig.png' height='45px'/></a>
         </p>
       </div>
     </section>
 
-    <!-- <hr class="m-0"> -->
+    
+    <hr class="m-0" />
 
+    <!-- ==============================================================================================================================   -->
+    <!--       Research Interests        -->
+    <!-- ==============================================================================================================================   -->
+    <section class="resume-section p-3 p-lg-5 d-flex justify-content-center" id="interest">
+      <div class="w-100">
+        <h2 class="mb-5 lang-en">Research Works</h2>
+        <h2 class="mb-5 lang-fr">Travaux de recherche</h2>
+        <hr class="star-dark mb-5">
+        <div class="row">
+
+          <!-- Appariement de données -->
+          <article class="col-md-6 col-lg-4">
+                <div class="portfolio-item d-block mx-auto">
+                  <img class="img-fluid" src="img/interest_lauvitel.png" alt="" />
+                  <div class="portfolio-desc d-flex align-center position-absolute h-100 w-100">
+                    <div class="folio-info my-auto w-100 text-center">
+                      <h5 class="lang-en">Appariement de données</h5>
+                      <h5 class="lang-fr">Appariement de données</h5>
+                      <p class="description" style="font-size:13pt">
+                        Appariemment des données issues du web afin de déterminer leurs bien-fondés dans le contexte du sauvetage en montagne.
+                      <!--
+                      <p class="description lang-en">e.g. Potential of crowdsourced data for integrating landmarks and routes for rescue in mountain areas</p>
+                      <p class="description lang-fr">ex. Potentiel des sources de données collaboratives pour l’intégration des points de repère et des itinéraires pour le sauvetage en zone de montagne</p>
+                      -->
+                    </div>
+                  </div>
+                </div>
+          </article>
+          
+          <!-- Projet d'étudiant -->
+          <article class="col-md-6 col-lg-4">
+                <div class="portfolio-item d-block mx-auto">
+                  <img class="img-fluid" src="img/ProjetEleveFeu.png" alt="" />
+                  <div class="portfolio-desc d-flex align-center position-absolute h-100 w-100">
+                    <div class="folio-info my-auto w-100 text-center">
+                      <h5>Encadrement de projet d'étudiants</h5>
+                      <p class="description" style="font-size:13pt">
+                        <br/><br/>
+                        <a href="http://recherche.ign.fr/labos/util_basilic/publicDownload.php?id=4205">Présentation des travaux à un workshop</a>
+                        <br/><br/>
+                        <a href='demo/mitaka/mitaka.html'>Visualisation des résultats du projet</a>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+          </article>
+          
+          
+          <article class="col-md-6 col-lg-4">
+                <div class="portfolio-item d-block mx-auto">
+                  <img class="img-fluid" src="img/Infolab_GeoResource.png" alt="" />
+                  <div class="portfolio-desc d-flex align-center position-absolute h-100 w-100">
+                    <div class="folio-info my-auto w-100 text-center">
+                      <h5>Mise en place d'un infolab</h5>
+                      <p class="description" style="font-size:13pt"></p>
+                    </div>
+                  </div>
+                </div>
+          </article>
+          
+          <!--
+          <div class="col-md-6 col-lg-4">
+                <div class="portfolio-item d-block mx-auto">
+                  <img class="img-fluid" src="img/auto_carto.png" alt="" />
+                  <div class="portfolio-desc align-center position-absolute h-100 w-100">
+                    <div class="folio-info w-100 text-center">
+                      <h5 class="lang-en">Automated cartography: text placement, schematization, conflation</h5>
+                      <h5 class="lang-fr">Cartographie automatique: placement de texte, schématisation, recalage géométrique</h5>
+                    </div>
+                  </div>
+                </div>
+          </div>
+          -->
+
+        </div>
+      </div>
+    </section>
+
+
+    <hr class="m-0" />
+
+    <!-- ==============================================================================================================================   -->
+    <!--       Projets        -->
+    <!-- ==============================================================================================================================   -->
+    <section class="resume-section p-3 p-lg-5 d-flex justify-content-center" id="projects">
+      <div class="w-100">
+        <h2 class="mb-5 lang-en">Projects</h2>
+        <h2 class="mb-5 lang-fr">Projet</h2>
+        <hr class="star-dark mb-5">
+        <div class="row">
+            
+          <!-- CHOUCAS -->
+          <article class="col-md-6 col-lg-4">
+            <div class="portfolio-item d-block mx-auto" style="text-align:center">
+              <img class="img-fluid" src='http://choucas.ign.fr/img/logos/logo-choucas2.png' width='100px' alt="" />
+              <div class="portfolio-desc d-flex align-center position-absolute h-100 w-100">
+                <div class="folio-info my-auto w-100 text-center">
+                  <h5 class="lang-en">CHOUCAS (ANR, 2017-2020)</h5>
+                  <h5 class="lang-fr">CHOUCAS (ANR, 2017-2020)</h5>
+                  </div>
+                </div>
+              </div>
+          </article>
+          
+          <!-- URCLIM -->
+          <article class="col-md-6 col-lg-4">
+            <div class="portfolio-item d-block mx-auto" style="text-align:center">
+              <img class="img-fluid" src='http://urclim.prod.lamp.cnrs.fr/wp-content/uploads/2018/04/cropped-Logo_URCLIM_HR-e1524125688637.png' width='100px' alt="" />
+              <div class="portfolio-desc d-flex align-center position-absolute h-100 w-100">
+                <div class="folio-info my-auto w-100 text-center">
+                  <h5 class="lang-en">UrCLIM (ERA4CS, 2017-2020)</h5>
+                  <h5 class="lang-fr">UrCLIM (ERA4CS, 2017-2020)</h5>
+                  </div>
+                </div>
+              </div>
+          </article>
+          
+          <!-- LANDSENSE -->
+          <article class="col-md-6 col-lg-4">
+            <div class="portfolio-item d-block mx-auto" style="text-align:center;vertical-align:top">
+              <img class="img-fluid" src='img/LandSense.png' width='100px' alt="" />
+              <div class="portfolio-desc d-flex align-center position-absolute h-100 w-100">
+                <div class="folio-info my-auto w-100 text-center">
+                  <h5 class="lang-en">LANDSENSE (H2020, 2016-2020)</h5>
+                  <h5 class="lang-fr">LANDSENSE (H2020, 2016-2020)</h5>
+                  </div>
+                </div>
+              </div>
+          </article>
+          
+        </div>
+      </div>
+    </section>
+    
+    
+    <hr class="m-0" />
+
+    <!-- ==============================================================================================================================   -->
+    <!--       Tools        -->
+    <!-- ==============================================================================================================================   -->
+     <section class="resume-section p-3 p-lg-5 d-flex align-items-center" id="tools">
+      <div class="w-100">
+        <h2 class="mb-5 lang-en">Software development</h2>
+        <h2 class="mb-5 lang-fr">Développement d'outils</h2>
+        
+        <div class="row">
+        
+        <!-- Développement -->
+          <article class="col-md-6 col-lg-4">
+                <div class="portfolio-item d-block mx-auto">
+                  <img class="img-fluid" src="img/api_landsense.png" alt="" />
+                  <div class="portfolio-desc d-flex align-center position-absolute h-100 w-100">
+                    <div class="folio-info my-auto w-100 text-center">
+                      <h5>Développement d'une api pour des outils d’édition collaborative (bureautique et mobile) à partir du logiciel 
+                        <a href="https://espacecollaboratif.ign.fr/">Espace collaboratif IGN</a></h5>
+                      <p class="description" style="font-size:13pt"></p>
+                    </div>
+                  </div>
+                </div>
+          </article>
+          <article class="col-md-6 col-lg-4">
+                <div class="portfolio-item d-block mx-auto">
+                  <img class="img-fluid" src="img/PlugInVisuMatchingMultiCrit2.png" alt="" />
+                  <div class="portfolio-desc d-flex align-center position-absolute h-100 w-100">
+                    <div class="folio-info my-auto w-100 text-center">
+                      <h5>VisuValideMultiCriteriaMatching</h5>
+                      <p class="description" style="font-size:13pt">Plugin de visualisation des résultats d'appariement multi-critères pour le logiciel QGIS</p>
+                    </div>
+                  </div>
+                </div>
+          </article>
+          <article class="col-md-6 col-lg-4">
+                <div class="portfolio-item d-block mx-auto">
+                  <img class="img-fluid" src="img/PoussePousseEditData.png" alt="" />
+                  <div class="portfolio-desc d-flex align-center position-absolute h-100 w-100">
+                    <div class="folio-info my-auto w-100 text-center">
+                      <h5>PoussePousseEditData</h5>
+                      <p class="description" style="font-size:13pt">PlugIn QGis de création et de contrôle de jeu de données géographiques sur fond cartographique.</p>
+                    </div>
+                  </div>
+                </div>
+          </article>
+        
+        </div>
+        
+        
+        </div>
+    </section>
+    
+
+
+    <hr class="m-0" />
+
+    <!-- ==============================================================================================================================   -->
+    <!--       Biblio        -->
+    <!-- ==============================================================================================================================   -->
+     <section class="resume-section p-3 p-lg-5 d-flex align-items-center" id="publications">
+      <div class="w-100">
+        <h2 class="mb-5 lang-en">Publications</h2>
+        <h2 class="mb-5 lang-fr">Publications</h2>
+
+        <div class="subheading mb-3 mt-3">Paper</div>
+        <ul style="padding:2px;">
+        
+          <li id="pubJ">Collaborative user oriented metadata production on EuroSDR geometadatalabs platform. Bénédicte Bucher (2020).
+3rd International Workshop on Spatial Data Quality (SDQ 2020) / Jonathan Holmes (2020)</li>
+
+          <li id="pubJ">Feedbacks on VGI in-situ campaign for updating LULC data / Laurence Jolivet (2019)
+Ana-Maria Olteanu-Raimond, Laurence Jolivet, Marie-Dominique van Damme, Timothée Royer, Ludovic Fraval, et al.. 
+An Experimental Framework for Integrating Citizen and Community Science into Land Cover, Land Use, and Land Change Detection Processes 
+in a National Mapping Agency. Land, MDPI, 2018, 7 (3), pp.103. ⟨10.3390/land7030103⟩. </li>
+        
+        <li id="pubJ" class="sub">Potential of crowdsourced data for integrating landmarks and routes for rescue in mountain areas.
+  Marie-Dominique Van Damme in International journal of cartography, vol 5 n° 2-3 (July - November 2019)</li>
+
+        <li>Meneroux, Y., V. Dizier, M. Margollé, M.-D. Van Damme, H. Kanasugi, A. Le Guilcher, G. Saint-Pierre and Y. Kato (2018) Convolutional Neural Network for Traffic Signal 
+          Inference based on GPS Traces, Spatial Big Data and Machine Learning in GIScience,
+          Workshop at GIScience 2018, pp. 9--12 </li>
+
+        <li id="pubJ" class="sub">Touya, G., V. Antoniou, A.-M. Olteanu-Raimond and M.-D. Van Damme (2017) Assessing Crowdsourced POI Quality: 
+          Combining Methods Based on Reference Data, History, and Spatial Relations, ISPRS International Journal of Geo-Information, 
+          vol. 6, n. 3, pp. 80, doi:10.3390/ijgi6030080</li>
+
+        <li id="pubJ" class="sub">Van Damme, M.-D. and S. Mustière (2016) Analyse multi-échelles de référentiels vectoriels via SOLAP, 
+          2nd Atelier GAST @ EGC Reims 2016, pp. 47 à 57</li>
+          
+        <li id="pubJ" class="sub">Brun, G., C. Dominguès and M.-D. Van Damme (2015) TEXTOMAP : determining geographical window for texts, 
+          Proceedings of the 9th Workshop on Geographic Information Retrieval, GIR'2015, SIGSPATIAL, ACM (Paris France.)</li>
+
+        </ul>
+        
+        
+        
+        <br/>
+        <div class="subheading mb-3 mt-3">Data</div>
+        <ul style="padding:2px;">
+        
+          <li id="pubJ">Crowd and community sourcing to update authoritative LULC data in urban areas
+          <a href="https://doi.org/10.5281/zenodo.3691827"><img src="https://zenodo.org/badge/DOI/10.5281/zenodo.3691827.svg" /></a></li>
+          
+        </ul>
+        
+        
+      </div>
+    </section>
+    
+    
+    
+    <!-- ==============================================================================================================================   -->
+    <!--       Teaching        -->
+    <!-- ==============================================================================================================================   -->
+     <section class="resume-section p-3 p-lg-5 d-flex align-items-center" id="teaching">
+      <div class="w-100">
+        <h2 class="mb-5 lang-en">Teaching</h2>
+        <h2 class="mb-5 lang-fr">Enseignement</h2>
+
+        TODO
+
+      </div>
+    </section>
+
+    
+    
+    <!-- ==============================================================================================================================   -->
+    <!-- ==============================================================================================================================   -->
+    
   </div>
 
+  
   <!-- Bootstrap core JavaScript -->
   <script src="vendor/jquery/jquery.min.js"></script>
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>

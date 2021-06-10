@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width">
+    
+	<link rel="stylesheet" href="js/ol.css" type="text/css" />
+	
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/proj4js/2.3.15/proj4.js"></script>
+
+    <title>Mitaka</title>
+	
+	<style>
+        .map {
+            height: 450px;
+            width: 600px;
+            border:1px solid #BDBDBD;
+        }
+    </style>
+  </head>
+  
+  <body>
+	<script src="js/ol-debug.js" type="text/javascript"></script>
+	<script src="mitaka_resultat.js" type="text/javascript"></script>
+	<script src="mitaka_validation.js" type="text/javascript"></script>
+	<script src="mitaka_descripteur.js" type="text/javascript"></script>
+	
+	  <div style="padding:8px;font-size:16px">
+      <a class="nav-link js-scroll-trigger lang-en" href="../../index.html#interest" style="color:#000;">Marie-Dominique Van Damme Home Page</a>
+	  </div>
+
+	<table>
+		<tr>
+			<td colspan="2" style='text-align:left;vertical-align:top;padding-left:4px'>
+				<div id="map3" class="map" style="margin-left:8px;margin-top:0px;margin-bottom:0px"></div>
+			</td>
+			<td colspan="2" style='text-align:left;vertical-align:top;padding-left:4px'>
+				<div id="map2" class="map" style="margin-left:8px;margin-top:0px;margin-bottom:0px"></div>
+			</td>
+		</tr>
+		<tr>
+			<td style='text-align:left;vertical-align:top;'></td>
+			<td style='text-align:left;vertical-align:top;padding-left:4px'>
+			
+				<br/><br/>
+				
+				<input type='radio' name='map3_res1' value='map3_res1_moysimp' id='map3_res1_moysimp' onclick="LayerMap3Result()" checked='checked'/>
+				<label for="map3_res1_moysimp">Résultat (vignettes fusionnées avec moy simple)</label><br/>
+				
+				<input type='radio' name='map3_res1' value='map3_res1_moypond30' id='map3_res1_moypond30' onclick="LayerMap3Result()" />
+				<label for="map3_res1_moypond30">Résultat (vignettes fusionnées avec moy pondérée : 30)</label><br/>
+				
+				<input type='radio' name='map3_res1' value='map3_res1_moypond15' id='map3_res1_moypond15' onclick="LayerMap3Result()" />
+				<label for="map3_res1_moypond15">Résultat (vignettes fusionnées avec moy pondérée : 15)</label><br/>
+				
+				<input type='radio' name='map3_res1' value='none' id='none' onclick="LayerMap3Result()" />
+				<label for="none">Aucun</label><br/>
+				
+			</td>
+			<td style='text-align:left;vertical-align:top;padding-left:4px;padding-top:4px'>
+			
+				Descripteurs avec données corrigées : <br/><br/>
+				<input type='radio' name='desc' id='average_speed_smooth' onclick="descripteur('average_speed_smooth')" checked='checked' />
+					<label for="average_speed_smooth"> Vitesse - moyenne</label><br/>
+				<input type='radio' name='desc' id='average_acceleration_smooth' onclick="descripteur('average_acceleration_smooth')" />
+					<label for="average_acceleration_smooth"> Accélération - moyenne</label><br/>
+				<input type='radio' name='desc' id='sum_stop_point_smooth' onclick="descripteur('sum_stop_point_smooth')" /> 
+					<label for="sum_stop_point_smooth"> Points stop - somme (nouvelle formule, tps crit = 5s)</label><br/>
+				<input type='radio' name='desc' id='dominant_orientation_smooth' onclick="descripteur('dominant_orientation_smooth')" />
+					<label for="dominant_orientation_smooth"> Orientation - la + fréquente</label><br/>
+					
+			
+			</td>
+			<td style='text-align:left;vertical-align:top;padding-left:4px;padding-top:4px'>
+				Composantes connexes : <br/><br/>
+				<input type='radio' name='desc' id='cc228' onclick="descripteur('cc228')" />
+					<label for="cc228"> Seuil optimisé (fusion pond 15)</label><br/>
+					
+				<br/><br/>
+			
+			</td>
+		</tr>
+		<tr>
+			<td></td>
+			<td style='text-align:left;vertical-align:top;padding-left:4px'>
+			
+				<br/>
+				<input type='checkbox' name='map3_stop' value='map3_stop' id='map3_stop' onclick="LayerMap3Stop()" checked='checked'/>
+				<label for="map3_stop">Lignes de stop</label><br/>
+				
+				<br/>
+				
+				<input type='checkbox' name='bing' value='bing' id='bing' onclick="fondbing()" /><label for="bing">Bing</label>
+				&nbsp;&nbsp;&nbsp;
+				<input type='checkbox' name='zone' value='zone' id='zone' onclick="fondzone()" /><label for="zone">Zone</label>
+				
+			</td>
+			
+			<td colspan="2" style='text-align:left;vertical-align:top;padding-left:4px;padding-top:4px'>
+			
+				<br/>
+				<input type='checkbox' name='map2_stop' value='map2_stop' id='map2_stop' onclick="LayerMap2Stop()" checked='checked'/>
+					<label for="map2_stop">Lignes de stop</label><br/>
+			</td>
+		</tr>
+		<tr>
+			<td style='vertical-align:top;text-align:center' colspan="4">
+				
+				<br/>
+				
+				<input type='submit' value='Mitaka' onclick="zoom('mitaka')" id='Mitaka' style='padding:12px 48px 12px 48px' />
+				
+				<input type='submit' value='Zone 1' onclick="zoom('zone1')" id='zoomzone1' />
+				<input type='submit' value='Zone 2' onclick="zoom('zone2')" id='zoomzone2' />
+				<input type='submit' value='Zone 3' onclick="zoom('zone3')" id='zoomzone3' />
+				<input type='submit' value='Zone 4' onclick="zoom('zone4')" id='zoomzone4' />
+				<input type='submit' value='Zone 5' onclick="zoom('zone5')" id='zoomzone5' />
+				<input type='submit' value='Zone 6' onclick="zoom('zone6')" id='zoomzone6' />
+				<input type='submit' value='Zone 7' onclick="zoom('zone7')" id='zoomzone7' />
+				<input type='submit' value='Zone 8' onclick="zoom('zone8')" id='zoomzone8' /><br/>
+				
+			</td>
+	</table>
+	
+	
+    <script type="text/javascript">
+	
+		// ----------------------------------------------------------------------------------------------
+		// On définit une nouvelle projection : 32654
+		proj4.defs("EPSG:32654","+proj=utm +zone=54 +ellps=WGS84 +datum=WGS84 +units=m +no_defs");
+		
+		var tokyoBounds = [ 366288.496639618, 3947174.20595923, 426544.599243, 4010764.56921];
+		var tokyoProjection = new ol.proj.Projection({
+			code: 'EPSG:32654',
+			units: 'm',
+			extent: tokyoBounds
+		});
+		
+		var mitakaBounds = [ 366288.496639618, 3947174.20595923, 372803.04499373, 3952409.99610818];
+		var mitakaProjection = new ol.proj.Projection({
+			code: 'EPSG:32654',
+			units: 'm',
+			extent: mitakaBounds
+		});
+		
+		// ------------------------------------------------------------------------------------------------
+		//    View
+		var centreTokyo = ol.extent.getCenter(tokyoProjection.getExtent());
+		var zoomEmpriseTokyo = 1;
+		var vue = new ol.View({
+			center: centreTokyo,
+			projection: tokyoProjection,
+			zoom:zoomEmpriseTokyo,
+		});
+		
+		// ---------------------------------------------------------------------------------------
+		// LAYER NETWORK
+		var mitakaNetworkLayer = new ol.layer.Tile({
+			title: "Mitaka - network",
+			source: new ol.source.TileWMS({
+				url: 'http://82.165.253.86/geoserver/mitaka/wms',
+				params: {'LAYERS': 'mitaka:mitaka_network'}
+			})
+		});
+		
+		// ---------------------------------------------------------------------------------------
+		// LAYER STOP LINE
+		
+		var mitakaStoplineLayerMap3 = new ol.layer.Tile({
+			title: "Mitaka - stop line",
+			source: new ol.source.TileWMS({
+				url: 'http://82.165.253.86/geoserver/mitaka/wms',
+				params: {'LAYERS': 'mitaka:mitaka_stopline'}
+			})
+		});
+		
+		var mitakaStoplineBleuLayerMap3 = new ol.layer.Tile({
+			title: "Mitaka - stop line",
+			source: new ol.source.TileWMS({
+				url: 'http://82.165.253.86/geoserver/mitaka/wms',
+				params: {'LAYERS': 'mitaka:mitaka_stopline'}
+			})
+		});
+		
+		
+		// ---------------------------------------------------------------------------------------
+		// LAYER 8 ZONE
+		
+		var styleZoneFunction = function(feature, resolution) {
+			var id = feature.get('id');
+			fillColor = 'red';
+			if (id == "1") fillColor = '#19BC9D';
+			if (id == "2") fillColor = '#2DCC70';
+			if (id == "3") fillColor = '#3297DB';
+			if (id == "4") fillColor = '#7E8C8D';
+			if (id == "5") fillColor = '#34495E';
+			if (id == "6") fillColor = '#BEC3C7';
+			if (id == "7") fillColor = '#9A59B5';
+			if (id == "8") fillColor = '#4A8886';
+			if (id != null) {
+				var s = new ol.style.Style({
+					stroke: new ol.style.Stroke({
+						color: fillColor,
+						width: 2
+					}),
+					fill: new ol.style.Fill({
+						color: fillColor,
+					})
+				});
+				return s;
+			}
+		}
+		
+		var zoneSource = new ol.source.Vector({
+			format: new ol.format.GeoJSON(),
+			projection: 'EPSG:32654',
+			url: './data/mitaka/zone.geojson',
+		});
+		var zoneLayer = new ol.layer.Vector({
+			source: zoneSource,
+			style: styleZoneFunction,
+			opacity: 0.65
+		});
+		zoneLayer.setVisible(false);
+		
+		// ---------------------------------------------------------------------------------------
+		// LAYER Bing
+		
+		var key = 'AjQH5U8iE6jc9rI5Dc8NLx3Dx9FxmFUJzsls97cE0MIPHa0q9TUoiwFl_h1gW0w3';
+        var bingAerial = new ol.layer.Tile({
+			source: new ol.source.BingMaps({key: key, imagerySet: 'Aerial'})
+        });
+		bingAerial.setVisible(false);
+		
+		
+		
+		
+		
+		// +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+		// EPSG:32654
+		// 
+		
+		
+		
+		
+	
+		// ---------------------------------------------------------------------------------------
+		// 		MAP 
+	
+		var map2 = new ol.Map({
+			target: 'map2',
+			layers: [rasterMitakaOrientation, rasterMitakaOrientationSmooth,
+						rasterMitakaAverageSpeed, rasterMitakaAverageSpeedSmooth, 
+						rasterMitakaAverageAcceleration, rasterMitakaAverageAccelerationSmooth,
+						rasterMitakaStopPointSum, rasterMitakaStopPointSumSmooth,
+						rasterMitakaSpeedStDeviation, rasterMitakaSpeedVariance,
+						
+						rasterMitakaCC228Zone1, vecteurMitakaCC228PicZone1,
+						
+						mitakaStoplineBleuLayerMap3
+					],	
+			view: vue
+		});
+
+		var map3 = new ol.Map({
+			target: 'map3',
+			layers: [bingAerial, zoneLayer, mitakaNetworkLayer,
+						rasterMitakaResult1Zone1, rasterMitakaResult2Zone1, rasterMitakaResult3Zone1,
+						rasterMitakaResult1Zone2, rasterMitakaResult2Zone2, rasterMitakaResult3Zone2,
+						rasterMitakaResult1Zone3, rasterMitakaResult2Zone3, rasterMitakaResult3Zone3,
+						rasterMitakaResult1Zone4, rasterMitakaResult2Zone4, rasterMitakaResult3Zone4,
+						rasterMitakaResult1Zone5, rasterMitakaResult2Zone5, rasterMitakaResult3Zone5,
+						rasterMitakaResult1Zone6, rasterMitakaResult2Zone6, rasterMitakaResult3Zone6,
+						rasterMitakaResult1Zone7, rasterMitakaResult2Zone7, rasterMitakaResult3Zone7,
+						rasterMitakaResult1Zone8, rasterMitakaResult2Zone8, rasterMitakaResult3Zone8,
+						mitakaStoplineLayerMap3],
+						//tsukubaNetworkLayer, tsukubaStoplineLayer],
+			view: vue
+		});
+		
+		// Zoom sur Mitaka
+		var extent = mitakaProjection.getExtent()
+		map2.getView().fit(extent, map2.getSize());
+		// map3.getView().fit(extent, map3.getSize()); 
+		
+		
+
+		// ---------------------------------------------------------------------------------------
+		//   Javascript
+		
+		function LayerMap3Result() {
+			
+			if (document.getElementById('map3_res1_moysimp').checked) {
+				
+				rasterMitakaResult1Zone1.setVisible(true);
+				rasterMitakaResult1Zone2.setVisible(true);
+				rasterMitakaResult1Zone3.setVisible(true);
+				rasterMitakaResult1Zone4.setVisible(true);
+				rasterMitakaResult1Zone5.setVisible(true);
+				rasterMitakaResult1Zone6.setVisible(true);
+				rasterMitakaResult1Zone7.setVisible(true);
+				rasterMitakaResult1Zone8.setVisible(true);
+				
+				rasterMitakaResult2Zone1.setVisible(false);
+				rasterMitakaResult2Zone2.setVisible(false);
+				rasterMitakaResult2Zone3.setVisible(false);
+				rasterMitakaResult2Zone4.setVisible(false);
+				rasterMitakaResult2Zone5.setVisible(false);
+				rasterMitakaResult2Zone6.setVisible(false);
+				rasterMitakaResult2Zone7.setVisible(false);
+				rasterMitakaResult2Zone8.setVisible(false);
+				
+				rasterMitakaResult3Zone1.setVisible(false);
+				rasterMitakaResult3Zone2.setVisible(false);
+				rasterMitakaResult3Zone3.setVisible(false);
+				rasterMitakaResult3Zone4.setVisible(false);
+				rasterMitakaResult3Zone5.setVisible(false);
+				rasterMitakaResult3Zone6.setVisible(false);
+				rasterMitakaResult3Zone7.setVisible(false);
+				rasterMitakaResult3Zone8.setVisible(false);
+			
+			} else if (document.getElementById('map3_res1_moypond15').checked) {
+				
+				rasterMitakaResult1Zone1.setVisible(false);
+				rasterMitakaResult1Zone2.setVisible(false);
+				rasterMitakaResult1Zone3.setVisible(false);
+				rasterMitakaResult1Zone4.setVisible(false);
+				rasterMitakaResult1Zone5.setVisible(false);
+				rasterMitakaResult1Zone6.setVisible(false);
+				rasterMitakaResult1Zone7.setVisible(false);
+				rasterMitakaResult1Zone8.setVisible(false);
+				
+				rasterMitakaResult2Zone1.setVisible(true);
+				rasterMitakaResult2Zone2.setVisible(true);
+				rasterMitakaResult2Zone3.setVisible(true);
+				rasterMitakaResult2Zone4.setVisible(true);
+				rasterMitakaResult2Zone5.setVisible(true);
+				rasterMitakaResult2Zone6.setVisible(true);
+				rasterMitakaResult2Zone7.setVisible(true);
+				rasterMitakaResult2Zone8.setVisible(true);
+				
+				rasterMitakaResult3Zone1.setVisible(false);
+				rasterMitakaResult3Zone2.setVisible(false);
+				rasterMitakaResult3Zone3.setVisible(false);
+				rasterMitakaResult3Zone4.setVisible(false);
+				rasterMitakaResult3Zone5.setVisible(false);
+				rasterMitakaResult3Zone6.setVisible(false);
+				rasterMitakaResult3Zone7.setVisible(false);
+				rasterMitakaResult3Zone8.setVisible(false);
+			
+			} else if (document.getElementById('map3_res1_moypond30').checked) {
+				
+				rasterMitakaResult1Zone1.setVisible(false);
+				rasterMitakaResult1Zone2.setVisible(false);
+				rasterMitakaResult1Zone3.setVisible(false);
+				rasterMitakaResult1Zone4.setVisible(false);
+				rasterMitakaResult1Zone5.setVisible(false);
+				rasterMitakaResult1Zone6.setVisible(false);
+				rasterMitakaResult1Zone7.setVisible(false);
+				rasterMitakaResult1Zone8.setVisible(false);
+				
+				rasterMitakaResult2Zone1.setVisible(false);
+				rasterMitakaResult2Zone2.setVisible(false);
+				rasterMitakaResult2Zone3.setVisible(false);
+				rasterMitakaResult2Zone4.setVisible(false);
+				rasterMitakaResult2Zone5.setVisible(false);
+				rasterMitakaResult2Zone6.setVisible(false);
+				rasterMitakaResult2Zone7.setVisible(false);
+				rasterMitakaResult2Zone8.setVisible(false);
+				
+				rasterMitakaResult3Zone1.setVisible(true);
+				rasterMitakaResult3Zone2.setVisible(true);
+				rasterMitakaResult3Zone3.setVisible(true);
+				rasterMitakaResult3Zone4.setVisible(true);
+				rasterMitakaResult3Zone5.setVisible(true);
+				rasterMitakaResult3Zone6.setVisible(true);
+				rasterMitakaResult3Zone7.setVisible(true);
+				rasterMitakaResult3Zone8.setVisible(true);
+			
+			} else {
+			
+				rasterMitakaResult1Zone1.setVisible(false);
+				rasterMitakaResult1Zone2.setVisible(false);
+				rasterMitakaResult1Zone3.setVisible(false);
+				rasterMitakaResult1Zone4.setVisible(false);
+				rasterMitakaResult1Zone5.setVisible(false);
+				rasterMitakaResult1Zone6.setVisible(false);
+				rasterMitakaResult1Zone7.setVisible(false);
+				rasterMitakaResult1Zone8.setVisible(false);
+				
+				rasterMitakaResult2Zone1.setVisible(false);
+				rasterMitakaResult2Zone2.setVisible(false);
+				rasterMitakaResult2Zone3.setVisible(false);
+				rasterMitakaResult2Zone4.setVisible(false);
+				rasterMitakaResult2Zone5.setVisible(false);
+				rasterMitakaResult2Zone6.setVisible(false);
+				rasterMitakaResult2Zone7.setVisible(false);
+				rasterMitakaResult2Zone8.setVisible(false);
+				
+				rasterMitakaResult3Zone1.setVisible(false);
+				rasterMitakaResult3Zone2.setVisible(false);
+				rasterMitakaResult3Zone3.setVisible(false);
+				rasterMitakaResult3Zone4.setVisible(false);
+				rasterMitakaResult3Zone5.setVisible(false);
+				rasterMitakaResult3Zone6.setVisible(false);
+				rasterMitakaResult3Zone7.setVisible(false);
+				rasterMitakaResult3Zone8.setVisible(false);
+			}
+			
+		}
+		
+		function LayerMap3Stop() {
+			if (document.getElementById('map3_stop').checked) {
+				mitakaStoplineLayerMap3.setVisible(true);
+			} else {
+				mitakaStoplineLayerMap3.setVisible(false);
+			}
+		}
+		
+		function LayerMap2Stop() {
+			if (document.getElementById('map2_stop').checked) {
+				mitakaStoplineBleuLayerMap3.setVisible(true);
+			} else {
+				mitakaStoplineBleuLayerMap3.setVisible(false);
+			}
+		}
+		
+		function fondzone() {
+			if (document.getElementById('zone').checked) {
+				zoneLayer.setVisible(true);
+			} else {
+				zoneLayer.setVisible(false);
+			}
+		}
+		
+		function fondbing() {
+			if (document.getElementById('bing').checked) {
+				bingAerial.setVisible(true);
+			} else {
+				bingAerial.setVisible(false);
+			}
+		}
+ 		
+		function zoom(ville) {
+			if (ville == "mitaka") {
+				var extent = mitakaProjection.getExtent()
+				map2.getView().fit(extent, map2.getSize()); 
+			} else if (ville == "tsukuba") {
+				var extent = tsukubaProjection.getExtent()
+				map2.getView().fit(extent, map2.getSize());
+			} else if (ville == "zone1") {
+				var extent = ol.extent.boundingExtent([[368600, 3951100], [370700, 3952400]]);
+				map2.getView().fit(extent, map2.getSize());
+			} else if (ville == "zone2") {
+				var extent = ol.extent.boundingExtent([[367000, 3949700], [368600, 3951800]]);
+				map2.getView().fit(extent, map2.getSize());
+			} else if (ville == "zone3") {
+				var extent = ol.extent.boundingExtent([[368600, 3949700], [369800, 3951100]]);
+				map2.getView().fit(extent, map2.getSize());
+			} else if (ville == "zone4") {
+				var extent = ol.extent.boundingExtent([[369800, 3949700], [370700, 3951100]]);
+				map2.getView().fit(extent, map2.getSize());
+			} else if (ville == "zone5") {
+				var extent = ol.extent.boundingExtent([[370700, 3949700], [372800, 3951800]]);
+				map2.getView().fit(extent, map2.getSize());
+			} else if (ville == "zone6") {
+				var extent = ol.extent.boundingExtent([[366500, 3947600], [369300, 3949700]]);
+				map2.getView().fit(extent, map2.getSize());
+			} else if (ville == "zone7") {
+				var extent = ol.extent.boundingExtent([[369300, 3947200], [370700, 3949700]]);
+				map2.getView().fit(extent, map2.getSize());
+			} else if (ville == "zone8") {
+				var extent = ol.extent.boundingExtent([[370700, 3947200], [372800, 3949700]]);
+				map2.getView().fit(extent, map2.getSize());
+			}
+		}
+		
+		function descripteur(code) {
+			
+			if (code == "dominant_orientation") {
+				rasterMitakaOrientation.setVisible(true);
+				rasterMitakaAverageSpeed.setVisible(false);
+				rasterMitakaAverageAcceleration.setVisible(false);
+				rasterMitakaStopPointSum.setVisible(false);
+				rasterMitakaSpeedStDeviation.setVisible(false);
+				rasterMitakaSpeedVariance.setVisible(false);
+				
+				rasterMitakaAverageSpeedSmooth.setVisible(false);
+				rasterMitakaAverageAccelerationSmooth.setVisible(false);
+				rasterMitakaStopPointSumSmooth.setVisible(false);
+				rasterMitakaOrientationSmooth.setVisible(false);
+				
+				rasterMitakaCC228Zone1.setVisible(false);
+				vecteurMitakaCC228PicZone1.setVisible(false);
+			
+			} else if (code == "dominant_orientation_smooth") {
+				rasterMitakaOrientation.setVisible(false);
+				rasterMitakaAverageSpeed.setVisible(false);
+				rasterMitakaAverageAcceleration.setVisible(false);
+				rasterMitakaStopPointSum.setVisible(false);
+				rasterMitakaSpeedStDeviation.setVisible(false);
+				rasterMitakaSpeedVariance.setVisible(false);
+				
+				rasterMitakaAverageSpeedSmooth.setVisible(false);
+				rasterMitakaAverageAccelerationSmooth.setVisible(false);
+				rasterMitakaStopPointSumSmooth.setVisible(false);
+				rasterMitakaOrientationSmooth.setVisible(true);
+				
+				rasterMitakaCC228Zone1.setVisible(false);
+				vecteurMitakaCC228PicZone1.setVisible(false);
+			
+			} else if (code == "average_acceleration") {
+				rasterMitakaAverageAcceleration.setVisible(true);
+				rasterMitakaOrientation.setVisible(false);
+				rasterMitakaAverageSpeed.setVisible(false);
+				rasterMitakaStopPointSum.setVisible(false);
+				rasterMitakaSpeedStDeviation.setVisible(false);
+				rasterMitakaSpeedVariance.setVisible(false);
+				
+				rasterMitakaAverageSpeedSmooth.setVisible(false);
+				rasterMitakaAverageAccelerationSmooth.setVisible(false);
+				rasterMitakaStopPointSumSmooth.setVisible(false);
+				rasterMitakaOrientationSmooth.setVisible(false);
+				
+				rasterMitakaCC228Zone1.setVisible(false);
+				vecteurMitakaCC228PicZone1.setVisible(false);
+				
+			} else if (code == "average_acceleration_smooth") {
+				rasterMitakaAverageSpeed.setVisible(false);
+				rasterMitakaAverageAcceleration.setVisible(false);
+				rasterMitakaOrientation.setVisible(false);
+				rasterMitakaStopPointSum.setVisible(false);
+				rasterMitakaSpeedStDeviation.setVisible(false);
+				rasterMitakaSpeedVariance.setVisible(false);
+				
+				rasterMitakaAverageSpeedSmooth.setVisible(false);
+				rasterMitakaAverageAccelerationSmooth.setVisible(true);
+				rasterMitakaStopPointSumSmooth.setVisible(false);
+				rasterMitakaOrientationSmooth.setVisible(false);
+				
+				rasterMitakaCC228Zone1.setVisible(false);
+				vecteurMitakaCC228PicZone1.setVisible(false);
+				
+			} else if (code == "average_speed") {
+				rasterMitakaAverageSpeed.setVisible(true);
+				rasterMitakaAverageAcceleration.setVisible(false);
+				rasterMitakaOrientation.setVisible(false);
+				rasterMitakaStopPointSum.setVisible(false);
+				rasterMitakaSpeedStDeviation.setVisible(false);
+				rasterMitakaSpeedVariance.setVisible(false);
+				
+				rasterMitakaAverageSpeedSmooth.setVisible(false);
+				rasterMitakaAverageAccelerationSmooth.setVisible(false);
+				rasterMitakaStopPointSumSmooth.setVisible(false);
+				rasterMitakaOrientationSmooth.setVisible(false);
+				
+				rasterMitakaCC228Zone1.setVisible(false);
+				vecteurMitakaCC228PicZone1.setVisible(false);
+				
+			} else if (code == "average_speed_smooth") {
+				rasterMitakaAverageSpeed.setVisible(false);
+				rasterMitakaAverageAcceleration.setVisible(false);
+				rasterMitakaOrientation.setVisible(false);
+				rasterMitakaStopPointSum.setVisible(false);
+				rasterMitakaSpeedStDeviation.setVisible(false);
+				rasterMitakaSpeedVariance.setVisible(false);
+				
+				rasterMitakaAverageSpeedSmooth.setVisible(true);
+				rasterMitakaAverageAccelerationSmooth.setVisible(false);
+				rasterMitakaStopPointSumSmooth.setVisible(false);
+				rasterMitakaOrientationSmooth.setVisible(false);
+				
+				rasterMitakaCC228Zone1.setVisible(false);
+				vecteurMitakaCC228PicZone1.setVisible(false);
+				
+			} else if (code == "sum_stop_point") {
+				rasterMitakaStopPointSum.setVisible(true);
+				rasterMitakaAverageSpeed.setVisible(false);
+				rasterMitakaAverageAcceleration.setVisible(false);
+				rasterMitakaOrientation.setVisible(false);
+				rasterMitakaSpeedStDeviation.setVisible(false);
+				rasterMitakaSpeedVariance.setVisible(false);
+				
+				rasterMitakaAverageSpeedSmooth.setVisible(false);
+				rasterMitakaAverageAccelerationSmooth.setVisible(false);
+				rasterMitakaStopPointSumSmooth.setVisible(false);
+				rasterMitakaOrientationSmooth.setVisible(false);
+				
+				rasterMitakaCC228Zone1.setVisible(false);
+				vecteurMitakaCC228PicZone1.setVisible(false);
+				
+			} else if (code == "sum_stop_point_smooth") {
+				rasterMitakaAverageSpeed.setVisible(false);
+				rasterMitakaAverageAcceleration.setVisible(false);
+				rasterMitakaOrientation.setVisible(false);
+				rasterMitakaStopPointSum.setVisible(false);
+				rasterMitakaSpeedStDeviation.setVisible(false);
+				rasterMitakaSpeedVariance.setVisible(false);
+				
+				rasterMitakaAverageSpeedSmooth.setVisible(false);
+				rasterMitakaAverageAccelerationSmooth.setVisible(false);
+				rasterMitakaStopPointSumSmooth.setVisible(true);
+				rasterMitakaOrientationSmooth.setVisible(false);
+				
+				rasterMitakaCC228Zone1.setVisible(false);
+				vecteurMitakaCC228PicZone1.setVisible(false);
+				
+			} else if (code == "sum_stop_point_smooth_v1") {
+				rasterMitakaAverageSpeed.setVisible(false);
+				rasterMitakaAverageAcceleration.setVisible(false);
+				rasterMitakaOrientation.setVisible(false);
+				rasterMitakaStopPointSum.setVisible(false);
+				rasterMitakaSpeedStDeviation.setVisible(false);
+				rasterMitakaSpeedVariance.setVisible(false);
+				
+				rasterMitakaAverageSpeedSmooth.setVisible(false);
+				rasterMitakaAverageAccelerationSmooth.setVisible(false);
+				rasterMitakaStopPointSumSmooth.setVisible(false);
+				rasterMitakaOrientationSmooth.setVisible(false);
+				
+				rasterMitakaCC228Zone1.setVisible(false);
+				vecteurMitakaCC228PicZone1.setVisible(false);
+				
+			} else if (code == "st_deviation_speed") {
+				rasterMitakaAverageSpeed.setVisible(false);
+				rasterMitakaAverageAcceleration.setVisible(false);
+				rasterMitakaOrientation.setVisible(false);
+				rasterMitakaStopPointSum.setVisible(false);
+				rasterMitakaSpeedStDeviation.setVisible(true);
+				rasterMitakaSpeedVariance.setVisible(false);
+				
+				rasterMitakaAverageSpeedSmooth.setVisible(false);
+				rasterMitakaAverageAccelerationSmooth.setVisible(false);
+				rasterMitakaStopPointSumSmooth.setVisible(false);
+				rasterMitakaOrientationSmooth.setVisible(false);
+				
+				rasterMitakaCC228Zone1.setVisible(false);
+				vecteurMitakaCC228PicZone1.setVisible(false);
+				
+			} else if (code == "variance_speed") {
+				rasterMitakaAverageSpeed.setVisible(false);
+				rasterMitakaAverageAcceleration.setVisible(false);
+				rasterMitakaOrientation.setVisible(false);
+				rasterMitakaStopPointSum.setVisible(false);
+				rasterMitakaSpeedStDeviation.setVisible(false);
+				rasterMitakaSpeedVariance.setVisible(true);
+				
+				rasterMitakaAverageSpeedSmooth.setVisible(false);
+				rasterMitakaAverageAccelerationSmooth.setVisible(false);
+				rasterMitakaStopPointSumSmooth.setVisible(false);
+				rasterMitakaOrientationSmooth.setVisible(false);
+				
+				rasterMitakaCC228Zone1.setVisible(false);
+				vecteurMitakaCC228PicZone1.setVisible(false);
+			
+			} else if (code == "cc228") {
+			
+				rasterMitakaAverageSpeed.setVisible(false);
+				rasterMitakaAverageAcceleration.setVisible(false);
+				rasterMitakaOrientation.setVisible(false);
+				rasterMitakaStopPointSum.setVisible(false);
+				rasterMitakaSpeedStDeviation.setVisible(false);
+				rasterMitakaSpeedVariance.setVisible(false);
+				
+				rasterMitakaAverageSpeedSmooth.setVisible(false);
+				rasterMitakaAverageAccelerationSmooth.setVisible(false);
+				rasterMitakaStopPointSumSmooth.setVisible(false);
+				rasterMitakaOrientationSmooth.setVisible(false);
+			
+				rasterMitakaCC228Zone1.setVisible(true);
+				vecteurMitakaCC228PicZone1.setVisible(true);
+			
+			
+			} 
+			
+			
+		}
+		
+		
+		
+    </script>
+
+  </body>
+</html>
