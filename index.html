@@ -36,7 +36,7 @@
 </head>
 
 
-<body id="page-top" onload="reviewingVis('reviewing.json');" style='font-size:13pt'>
+<body id="page-top" onload="reviewingVis('reviewing.json');getPublications('Marie-Dominique-VAN-DAMME');" style='font-size:13pt'>
 
   
   <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top" id="sideNav">
@@ -97,7 +97,7 @@
       <div class="w-100">
         <h2 class="mb-0">Marie-Dominique Van Damme</h2>
         <p class="lead mb-5 lang-en" style='padding:0px'>
-          <a>marie<!--anti@spam.fr!-->-dominique.van-damme@ensg.eu</a>
+          <a>marie<!--anti@spam.fr!-->-dominique.van-damme (at) ensg.eu</a>
           <br/><br/>
           <span style='padding-right:8px'>Lecturer at the French National School of Geographic Sciences (ENSG), IGN’s School of Geomatics,</span>
           <span style='padding-right:8px'><a href="https://www.ensg.eu"><img src='./img/logo_ensg_mini.png' height='45px' /></a></span>
@@ -299,22 +299,56 @@
     <!-- ==============================================================================================================================   -->
      <section class="resume-section p-3 p-lg-5 d-flex align-items-center" id="teaching">
       <div class="w-100">
-        <h2 class="mb-5 lang-en">Teaching</h2>
-        <h2 class="mb-5 lang-fr">Enseignement</h2>
+        <h2 class="mb-5 lang-en">Teaching ENSG</h2>
+        <h2 class="mb-5 lang-fr">Enseignement ENSG</h2>
 
         <p style='padding:0px'>
-          <b>Enseignement</b>
-        <ol style='list-style-type:circle;font-size: 1.15rem;font-weight:400;'>
-          <li>&ge; 2015 Programmation SIG - M2 IGAST</li>
-          <li>&ge; 2021 Programmation sous QGis - Cycle géomètre 2ème année, Master Carthagéo, Formation professionnelle</li>
-          <li>&ge; 2018 TP Base Graphe Neo4j et ElasticSearch - M2 spécialisé DeSIgeo, resp module: Malika Grim-Yefsah</li>
-          <li>2017-2020 TP bases de données spatiales - Cycle d'ingénieur, 2ème année, resp module: Emmanuel Fritsch</li>
-          <li>&ge; 2019 Programmation orientée objet avec Java - Cycle d'ingénieur, 1ème année</li>
-		  <li>&ge; 2019 Projet informatique - Cycle d'ingénieur, 1ème année, resp module</li>
-          <li>2019-2023 Projet informatique - M1 mention géomatique</li>
-          <li>2015-2016 Projet WebMapping - M2 Carthagéo</li>
-        </ol>
+          <b>Cours issus de mes travaux et thématiques de recherche</b>
+          <ol style='list-style-type:circle;font-size: 1.15rem;font-weight:400;'>
+            <li>Intégration de données géographiques hétérogènes, &ge; 2023 - M2 IGAST et M2 DESIGEO</li>
+            <li>Publier des jeux de données, 2021-2023 - M2 TSI</li>
+            <li>Production métadonnées FAIR, &ge; 2023 - M2 TSI</li>
+          </ol>
         </p>
+
+        <p style='padding:0px'>
+          <b>Cours autour des bases de données</b>
+          <ol style='list-style-type:circle;font-size: 1.15rem;font-weight:400;'>
+            <li>Découverte des Bases Property Graph, &ge; 2018 - M2 DESIGEO</li>
+            <li>Bases de données relationnelles spatiales, 2017-2021 - Cycle d'ingénieur, 2ème année</li>
+            <li>Base de données relationelles et SQL, 2019- 2021 - Licence professionnelle</li>
+            <li>ETL et Entrepôts de Données géographiques, 2016-2017 - M2 DESIGEO</li>
+          </ol>
+        </p>
+
+        <p style='padding:0px'>
+          <b>Cours autour de la programmation</b>
+          <ol style='list-style-type:circle;font-size: 1.15rem;font-weight:400;'>
+            <li>Programmation sous QGIS, &ge; 2015 - M2 IGAST, M2 CARTHAGEO, Formation professionnelle</li>
+            <li>Programmation SIG, 2018-2022 - Licence professionnelle, Cycle géomètre 2ème année</li>
+            <li>Programmation orientée objet avec Java puis Python, &ge; 2019 - Cycle d'ingénieur 1ème année, M1 mention géomatique</li>
+          </ol>
+        </p>
+
+        <p style='padding:0px'>
+          <b>Formation par des projets informatique</b>
+          <ol style='list-style-type:circle;font-size: 1.15rem;font-weight:400;'>
+            <li>Projet informatique, &ge; 2019 - Cycle d'ingénieur 1ème année, M1 mention géomatique</li>
+            <li>Projet de développement informatique, 2019 - 2023 - Cycle d'ingénieur 2ème année et M1 mention géomatique</li>
+          </ol>
+        </p>
+
+        <p style='padding:0px'>
+          <b>Cours services web et cartographie en ligne</b>
+          <ol style='list-style-type:circle;font-size: 1.15rem;font-weight:400;'>
+            <li>Géocodage, 2019-2022 - M2 IGAST</li>
+            <li>Moteur de recherche ElasticSearch, 2018-2022 - M2 DESIGEO</li>
+            <li>Cartographie en ligne et services web, 2017-2020 - Cycle d'ingénieur 2ème année</li>
+            <li>Projet WebMapping, 2012-2016 - M2 Carthagéo</li>
+          </ol>
+        </p>
+      
+        <br/>
         
        <p style='padding:0px'>
          <b>Support de cours</b>
@@ -322,36 +356,60 @@
           <li>Développement d'un plugIn QGis (bientôt)</li>
         </ol>
        </p>
+
+      <br/>
        
        <p style='padding:0px;text-align:justify'>
          <b>Encadrement de projets d'étudiants</b>
           <ol style='list-style-type:circle;font-size: 1.15rem;font-weight:400;text-align:justify'>
+            <li>2023: Quelle modélisation des données pour trouver les itinéraires qui passent près d’un refuge et empruntent une partie d’une montée en lacets ? Par Benjamin Lecordix, Johan Palos et Margaux Plounevez (Cycle ingénieur 2ème année, ENSG). Projet co-encadré avec Cécile Duchêne.</li>
+            
             <li>2022: Comment arrive-t-on au lac ? Description d'un itinéraire
               Par Lilian Wecker, Paul Guardiola, Victorien Ollivier (Cycle ingénieur 2ème année, ENSG). 
               Projet co-encadré avec Cécile Duchêne.</li>
-			<li>2021: Traverser la forêt, du langage au terrain
+            <li>2022: Détection automatique de sentiers balcons à partir de données géographiques. Par Audrey Nicolas, Paul Tissot et Clémence Bizau (Master 2ème année IGAST, ENSG). Projet co-encadré avec Cécile Duchêne.</li>
+            
+            <li>2021: Traverser la forêt, du langage au terrain
               Par Ilona Baran, Baptiste Rivière, Lubin Roineau (Cycle ingénieur 2ème année, ENSG). 
               Projet co-encadré avec Cécile Duchêne.</li>
+            <li>2021: Proposition de stratégies de fusion de données géographiques multi-sources. Par Nick Lin (Master 2ème année Carthagéo, ENSG). Projet co-encadré avec Ana-Maria Raimond.</li>
+
             <li>2019 : Analyse de trajectoires GPS pour la construction et la cotation de difficulté d’un réseau d’itinéraires : Application au cas du ski derandonnée. 
               Par Victor Decourt et Constance Barban (Cycle ingénieur 2ème année, ENSG). 
               Projet co-encadré avec Yann Méneroux.</li>
+            <li>2019: Analyse de données OpenStreetMap en vue de discriminer l’usage du sol lié au bâti. Par Jocelyn Le Maître (Projet Master 2ème année Carthagéo, ENSG). Projet co-encadré avec Ana-Maria Raimond et Laurence Jolivet.</li>
+
+            <li>2018: Estimation d’un indice de difficulté d’un itinéraire en fonction de divers facteurs. Par Ridley Campbell et Yanzhuo Peng (Cycle ingénieur 2ème année, ENSG). Projet co-encadré avec Yann Méneroux.</li>
+            <li>2018: Identification de séries de virages en lacets. Par Luc Baudoux et Nicolas Laurain (Cycle ingénieur 2ème année, ENSG). Projet co-encadré avec Cécile Duchêne.</li>
+            <li>2018: Détection automatique des sentiers en balcon en montagne par analyse géométrique par Marion Charpentier, Guillaume Herault, Mohamed Yousri Labed (Master 2ème année IGAST, ENSG). Projet co-encadré avec Cécile Duchêne.</li>
+            <li>2018: Création d’une carte d’occupation du sol à partir des données d’OpenStreetMap. Par Amandine Barou, Merlin  (Projet géomètre 2ème année, ENSG).</li>
+            <li>2018: Estimation de l'aire de réception des antennes téléphoniques. Par Doha Widadi, Erwan Viegas (Cycle ingénieur 2ème année, ENSG). Projet co-encadré avec Sébastien Mustière.</li>
+
             <li>2017 : Réseaux de neurones convolutionnels pour la détection et lalocalisation des feux tricolores à partir de traces GPS. 
               Par Mathieu Margolle et Victor Dizier (Cycle ingénieur 2ème année, ENSG)
               Projet dirigé par Yann Méneroux.</li>
             <li>2017 : Orchestration des flux de données du projet Choucas. 
               Par Sylvain Jourdan, Eva Chen-Yen-Su et Coline Hallier (Cycle ingénieur 2ème année, ENSG).
               Projet co-encadré avec Sébastien Mustière.</li>
-            <li>2015 : Développement d’une interface de visualisation de l’agrément sonore en milieu urbain Par Chloé Aussaresses (M2 Carthagéo, ENSG).
-              Projet dirigé par Catherine Dominguès.</li>            
+            <li>2017: Création de tableaux de bord cartographiques et exploitation de photos dans les outils Mediawiki, Gabriel Noiret (Master 2ème année Carthagéo, ENSG). Projet co-encadré avec Ana-Maria Raimond.</li>
+            <li>2017: Création d’un plugin QGis pour un Tripadvisor de la donnée géographique, Valentine.Monchiet (Master 2ème année Carthagéo, ENSG). Projet co-encadré avec Bénédicte Bucher.</li>
+            
+            <li>2015 : Développement d’une interface de visualisation de l’agrément sonore en milieu urbain Par Chloé Aussaresses (M2 Carthagéo, ENSG). Projet dirigé par Catherine Dominguès.</li>  
+
+            <li>2014: Transfert d’attributs de trafic par appariement du réseau Navstreets vers le réseau ERM, Marion Dumont. (Master 2ème année Carthagéo, ENSG). Projet co-encadré avec Sébastien Mustière.</li>          
           </ol>
        </p>
+
+    <br/>
 	
-	    <div>
+	  <div>
 			<p style='padding:0px;text-align:justify'>
 				<b>Posters de projets co-encadrés</b>, réalisés par des étudiants en
 			géomatique de l’École Nationale des Sciences Géographiques (ENSG)
 			</p>
 			<div  style='align:center;text-align:center!important;'>
+        <span style='padding:4px'><img id="poster26" src="img/poster/poster-portion-interet.png" style="width:200px"
+                         alt="Quelle modélisation des données pour trouver les itinéraires qui passent près d’un refuge et empruntent une partie d’une montée en lacets (2023-2024). Par Benjamin Lecordix, Johan Palos et Margaux Plounevez"></span>
 				<span style='padding:4px'><img id="poster22" src="img/poster/poster-description-itineraire.png" style="width:200px"
 											   alt="Comment arrive-t-on au lac ? Description d'un itinéraire (2022-2023). Par Lilian Wecker, Paul Guardiola, Victorien Ollivier"></span>
 				<span style='padding:4px'><img id="myImg" src="img/poster/poster-traverser-foret.png" style="width:200px"></span>
@@ -359,6 +417,8 @@
 				<span style='padding:4px'><img id="myImg" src="img/poster/poster-detectionfeutricolore.png" style="width:200px"></span>
 			</div>
 		</div>
+
+    <br/>
 		
 		<p style='padding:0px;text-align:justify'>
 	    <div>
@@ -374,7 +434,7 @@
 		</div>
 		</p>
 	
-        
+    <br/>    
         
         <p style='padding:0px'>
           <b>Encadrement de stages</b>
@@ -508,6 +568,17 @@
     <!-- ==============================================================================================================================   -->
     <!--       Biblio        -->
     <!-- ==============================================================================================================================   -->
+
+<section class="resume-section p-3 p-lg-5 d-flex align-items-center" id="publications">
+      <div class="w-100">
+        <h2 class="mb-5">Publications</h2>
+
+  <span id="pubACL"><div class="subheading mb-3 mt-3"><span class="lang-fr">[ACL] Articles de revues internationales</span><span class="lang-en">Journals</span></div></span>
+
+      </div>
+    </section>
+
+
      <section class="resume-section p-3 p-lg-5 d-flex align-items-center" id="publications">
       <div class="w-100">
         <h2 class="mb-5 lang-en">Publications</h2>
@@ -554,8 +625,7 @@ in a National Mapping Agency. Land, MDPI, 2018, 7 (3), pp.103. ⟨<a href='https
         <div class="subheading mb-3 mt-3">Software</div>
         <ul style="padding:2px;">
           
-          <li id="pubJ">Yann Méneroux, Marie-Dominique Van Damme. Tracklib: a python library a variety of tools, operators and functions to manipulate GPS trajectories. 2022. 
-            <a href="https://doi.org/10.5281/zenodo.10065979"><img src="https://zenodo.org/badge/DOI/10.5281/zenodo.10065979.svg" alt="DOI"></a>
+          <li id="pubJ">Yann Méneroux, Marie-Dominique van Damme. Tracklib: a python library with a variety of tools, operators and functions to manipulate GPS trajectories. 2022 <a href="https://hal.science/hal-04356178"><img src="https://zenodo.org/badge/DOI/10.5281/zenodo.10065979.svg" alt="DOI"></a>
           </li>
 
         </ul>
